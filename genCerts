@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for curve in prime256v1 secp384r1 secp521r1
+do
+   echo $curve
+   echo openssl req -x509 -nodes -days 3650 -newkey ec:<(openssl ecparam -name $curve) -keyout certs/ecdsa-$curve-key.pem -out certs/ecdsa-$curve-certificate.pem -subj "/C=UK/ST=Scotland/L=Edinburgh/O=Home/OU=Garage/CN=localhost/emailAddress=bilbo@baggins.com"
+   openssl req -x509 -nodes -days 3650 -newkey ec:<(openssl ecparam -name $curve) -keyout certs/ecdsa-$curve-key.pem -out certs/ecdsa-$curve-certificate.pem -subj "/C=UK/ST=Scotland/L=Edinburgh/O=Home/OU=Garage/CN=localhost/emailAddress=bilbo@baggins.com"
+done
